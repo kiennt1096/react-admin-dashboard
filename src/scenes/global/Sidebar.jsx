@@ -16,13 +16,28 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
-// const Item = ({ title, to, icon, selected, setSelected }) => {
-//     const theme = useTheme();
-//     const colors = tokens(theme.palette.mode);
-//     return (
-//         <MenuItem active
-//     )
-// };
+const Item = ({ title, to, icon, selected, setSelected }) => {
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
+    return (
+        <MenuItem
+            active={selected === title}
+            style={{
+                color: colors.gray[100],
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "right",
+            }}
+            onClick={() => {
+                setSelected(title);
+            }}
+            icon={icon}
+            component={<Link to={to} />}
+        >
+            <Typography>{title}</Typography>
+        </MenuItem>
+    );
+};
 
 const SidebarX = () => {
     const theme = useTheme();
@@ -34,21 +49,6 @@ const SidebarX = () => {
         <Box
             sx={{
                 background: colors.primary[400],
-                // "& .pro-sidebar-inner": {
-                //     background: `${colors.primary[400]} !important`,
-                // },
-                // "& .pro-icon-wrapper": {
-                //     backgroundColor: "transparent !important",
-                // },
-                // "& .pro-inner-item": {
-                //     padding: "5px 35px 5px 20px !important",
-                // },
-                // "& .pro-inner-item:hover": {
-                //     color: "#868dfb !important",
-                // },
-                // "& .pro-menu-item.active": {
-                //     color: "#6870fa !important",
-                // },
             }}
         >
             <Sidebar
@@ -61,6 +61,17 @@ const SidebarX = () => {
                     iconShape="square"
                     style={{
                         background: colors.primary[400],
+                    }}
+                    menuItemStyles={{
+                        button: {
+                            "&:hover": {
+                                backgroundColor: "transparent !important",
+                                color: "#868dfb !important",
+                            },
+                            [`&.ps-active`]: {
+                                color: `${colors.greenAccent[500]} !important`,
+                            },
+                        },
                     }}
                 >
                     {/* LOGO AND MENU ICON */}
@@ -83,7 +94,7 @@ const SidebarX = () => {
                                     variant="h3"
                                     color={colors.gray[100]}
                                 >
-                                    Sjn chào
+                                    Welcome
                                 </Typography>
                                 <IconButton
                                     onClick={() => setIsCollapsed(!isCollapsed)}
@@ -105,7 +116,7 @@ const SidebarX = () => {
                                     alt="profile-user"
                                     width="100px"
                                     height="100px"
-                                    src={`../../assets/user.png`}
+                                    src={`../../assets/tokuda.jpg`}
                                     style={{
                                         cursor: "pointer",
                                         borderRadius: "50%",
@@ -119,18 +130,96 @@ const SidebarX = () => {
                                     fontWeight="bold"
                                     sx={{ m: "10px 0 0 0" }}
                                 >
-                                    Trung Ciên
+                                    Shigeo Tokuda
                                 </Typography>
                                 <Typography
                                     variant="h5"
                                     color={colors.greenAccent[500]}
                                 >
-                                    Bảo vệ
+                                    Bảo vệ gái làng
                                 </Typography>
                             </Box>
                         </Box>
                     )}
-                    {/* <Box paddingLeft={isCollapsed ? undefined : "10%"}></Box> */}
+                    <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+                        <Item
+                            title="Dashboard"
+                            to="/"
+                            icon={<HomeOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Manage Team"
+                            to="/team"
+                            icon={<PeopleOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Contacts Information"
+                            to="/contacts"
+                            icon={<ContactsOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Invoices Balances"
+                            to="/invoices"
+                            icon={<ReceiptOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Profile Form"
+                            to="/form"
+                            icon={<PersonOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Calendar"
+                            to="/calendar"
+                            icon={<CalendarTodayOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="FAQ Page"
+                            to="/faq"
+                            icon={<HelpOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Bar chart"
+                            to="/bar"
+                            icon={<BarChartOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Pie chart"
+                            to="/pie"
+                            icon={<PieChartOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Line chart"
+                            to="/line"
+                            icon={<TimelineOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Geography chart"
+                            to="/geography"
+                            icon={<MapOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                    </Box>
                 </Menu>
             </Sidebar>
         </Box>
