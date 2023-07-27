@@ -13,8 +13,9 @@ import HelpOutlinedIcon from "@mui/icons-material/HelpOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlinedIcon from "@mui/icons-material/PieChartOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
     const theme = useTheme();
@@ -74,12 +75,16 @@ const SidebarX = () => {
                         },
                     }}
                 >
-                    {/* LOGO AND MENU ICON */}
+                    {/* Welcome + Collapsed icon */}
                     <MenuItem
                         onClick={() => setIsCollapsed(!isCollapsed)}
-                        icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+                        icon={
+                            isCollapsed ? (
+                                <ArrowForwardOutlinedIcon />
+                            ) : undefined
+                        }
                         rootStyles={{
-                            margin: "0px 0 0px 0",
+                            margin: "0",
                             color: colors.gray[100],
                         }}
                     >
@@ -94,17 +99,17 @@ const SidebarX = () => {
                                     variant="h3"
                                     color={colors.gray[100]}
                                 >
-                                    Welcome
+                                    Xin chào
                                 </Typography>
                                 <IconButton
                                     onClick={() => setIsCollapsed(!isCollapsed)}
                                 >
-                                    <MenuOutlinedIcon />
+                                    <ArrowBackOutlinedIcon />
                                 </IconButton>
                             </Box>
                         )}
                     </MenuItem>
-
+                    {/*Avatar + NAME + TITLE */}
                     {!isCollapsed && (
                         <Box p="20px 0 25px 0">
                             <Box
@@ -130,90 +135,112 @@ const SidebarX = () => {
                                     fontWeight="bold"
                                     sx={{ m: "10px 0 0 0" }}
                                 >
-                                    Shigeo Tokuda
+                                    Tokuda
                                 </Typography>
                                 <Typography
                                     variant="h5"
                                     color={colors.greenAccent[500]}
                                 >
-                                    Bảo vệ gái làng
+                                    Bán cá ngoài chợ
                                 </Typography>
                             </Box>
                         </Box>
                     )}
+                    {/*LIST ITEM */}
                     <Box paddingLeft={isCollapsed ? undefined : "10%"}>
                         <Item
-                            title="Dashboard"
+                            title="Trang chính"
                             to="/"
                             icon={<HomeOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
+                        <Typography
+                            variant="h6"
+                            color={colors.gray[300]}
+                            sx={{ m: "15px 0 5px 20px" }}
+                        >
+                            Data
+                        </Typography>
                         <Item
-                            title="Manage Team"
+                            title="Quản lý team"
                             to="/team"
                             icon={<PeopleOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Contacts Information"
+                            title="Liên hệ"
                             to="/contacts"
                             icon={<ContactsOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Invoices Balances"
+                            title="Tài khoản thanh toán"
                             to="/invoices"
                             icon={<ReceiptOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
+                        <Typography
+                            variant="h6"
+                            color={colors.gray[300]}
+                            sx={{ m: "15px 0 5px 20px" }}
+                        >
+                            Pages
+                        </Typography>
                         <Item
-                            title="Profile Form"
+                            title="Thông tin cá nhân"
                             to="/form"
                             icon={<PersonOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Calendar"
+                            title="Lịch"
                             to="/calendar"
                             icon={<CalendarTodayOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="FAQ Page"
+                            title="Trợ giúp"
                             to="/faq"
                             icon={<HelpOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
+                        <Typography
+                            variant="h6"
+                            color={colors.gray[300]}
+                            sx={{ m: "15px 0 5px 20px" }}
+                        >
+                            Chart
+                        </Typography>
                         <Item
-                            title="Bar chart"
+                            title="Biểu đồ BAR"
                             to="/bar"
                             icon={<BarChartOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Pie chart"
+                            title="Biểu đồ Pie"
                             to="/pie"
                             icon={<PieChartOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Line chart"
+                            title="Biểu đồ đường"
                             to="/line"
                             icon={<TimelineOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Geography chart"
+                            title="Biểu đồ Geo"
                             to="/geography"
                             icon={<MapOutlinedIcon />}
                             selected={selected}
