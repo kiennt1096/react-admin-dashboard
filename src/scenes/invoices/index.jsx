@@ -1,13 +1,11 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataTeam } from "../../data/mockData";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
+import { mockDataInvoices } from "../../data/mockData";
+
 import Header from "../../components/Header";
 
-const Team = () => {
+const Invoices = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
@@ -18,7 +16,7 @@ const Team = () => {
         },
         {
             field: "name",
-            headerName: "Tên",
+            headerName: "Tên con nợ",
             flex: 1,
             cellClassName: "name-column--cell",
         },
@@ -28,53 +26,33 @@ const Team = () => {
             flex: 1,
         },
         {
-            field: "age",
-            headerName: "Tuổi",
-            type: "number",
-            headerAlign: "left",
-            align: "left",
+            field: "cost",
+            headerName: "Số tiền nợ",
+            flex: 1,
+            renderCell: (params) => (
+                <Typography color={colors.greenAccent[500]}>
+                    ${params.row.cost}
+                </Typography>
+            ),
         },
         {
             field: "phone",
-            headerName: "Số điện thoại",
+            headerName: "Số để khủng bổ",
             flex: 1,
         },
         {
-            field: "access",
-            headerName: "Loại user",
+            field: "date",
+            headerName: "Ngày đòi nợ",
             flex: 1,
-            renderCell: ({ row: { access } }) => {
-                return (
-                    <Box
-                        width="60%"
-                        m="0 auto"
-                        p="5px"
-                        display="flex"
-                        justifyContent="center"
-                        backgroundColor={
-                            access === "admin"
-                                ? colors.greenAccent[600]
-                                : colors.greenAccent[700]
-                        }
-                        borderRadius="4px"
-                    >
-                        {access === "admin" && (
-                            <AdminPanelSettingsOutlinedIcon />
-                        )}
-                        {access === "manager" && <SecurityOutlinedIcon />}
-                        {access === "user" && <LockOpenOutlinedIcon />}
-                        <Typography color={colors.gray[100]} sx={{ ml: "5px" }}>
-                            {access}
-                        </Typography>
-                    </Box>
-                );
-            },
         },
     ];
 
     return (
         <Box m="20px">
-            <Header title="Team" subtitle="Quản lý Team của bạn" />
+            <Header
+                title="Tài khoản"
+                subtitle="Kiểm soát các con nợ của bạn!"
+            />
             <Box
                 m="40px 0 0 0 "
                 height="75vh"
@@ -105,24 +83,38 @@ const Team = () => {
                         borderTop: "none",
                         backgroundColor: colors.blueAccent[700],
                     },
+
                     "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
                         color: `${colors.gray[100]} !important`,
                     },
+                    //Màu của coloumn khi select vào
                     "& .MuiDataGrid-row.Mui-selected": {
                         backgroundColor: `${colors.blueAccent[700]} !important`,
                     },
+                    //Màu cảu column khi select và hover vào
                     "& .MuiDataGrid-row.Mui-selected:hover": {
                         backgroundColor: `${colors.blueAccent[700]} !important`,
                     },
                     "& .MuiDataGrid-cell:focus": {
                         outline: `none !important`,
                     },
+                    "& .Mui-checked": {
+                        color: `white !important`,
+                    },
+                    "& .MuiDataGrid-cell:focus-within": {
+                        outline: `none !important`,
+                    },
                 }}
             >
-                <DataGrid rows={mockDataTeam} columns={columns}></DataGrid>
+                <DataGrid
+                    checkboxSelection
+                    rows={mockDataInvoices}
+                    columns={columns}
+                    slots={{ toolbar: GridToolbar }}
+                ></DataGrid>
             </Box>
         </Box>
     );
 };
 
-export default Team;
+export default Invoices;
