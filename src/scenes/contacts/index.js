@@ -102,6 +102,7 @@ const Contacts = () => {
                 }}
             >
                 <DataGrid
+                    hideFooterSelectedRowCount="true"
                     rows={mockDataContacts}
                     columns={columns}
                     slots={{ toolbar: GridToolbar }}
