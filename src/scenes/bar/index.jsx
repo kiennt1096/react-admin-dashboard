@@ -5,7 +5,10 @@ import BarChart from "../../components/BarChart";
 const Bar = () => {
     return (
         <Box m="20px">
-            <Header title="Bar chart" subtitle="Hello"></Header>
+            <Header
+                title="Biểu đồ hình Cột"
+                subtitle="Xem vay nặng lãi theo biểu đồ hình cột"
+            ></Header>
 
             <Box height="75vh">
                 <BarChart />

@@ -5,7 +5,10 @@ import GeographyChart from "../../components/GeographyChart";
 const Geography = () => {
     return (
         <Box m="20px">
-            <Header title="Pie chart" subtitle="Hello"></Header>
+            <Header
+                title="Bản đồ nợ"
+                subtitle="Xem con nợ của bạn đang sống ở đâu"
+            ></Header>
 
             <Box height="75vh">
                 <GeographyChart />
